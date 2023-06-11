@@ -13,15 +13,20 @@ a {
 .cards {
   display: flex;
   flex-wrap: wrap;
+  gap: 12px;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 .cards__item {
+  padding-left: 20px;
+  padding-right: 20px;
   display: flex;
-  padding: 1rem;
+  // flex-basis: calc((100% - 24px) / 3);
 }
-
+.search-form {
+  margin-bottom: 20px;
+}
 .card {
   background-color: #eaeaea;
   border-radius: 0.25rem;
