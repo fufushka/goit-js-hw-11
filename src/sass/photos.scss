@@ -16,13 +16,12 @@ a {
   gap: 12px;
   list-style: none;
   margin: 0;
-  padding: 0;
-}
-.cards__item {
   padding-left: 20px;
   padding-right: 20px;
+}
+.cards__item {
   display: flex;
-  // flex-basis: calc((100% - 24px) / 3);
+  flex-basis: calc((100% - 24px) / 3);
 }
 .search-form {
   margin-bottom: 20px;

@@ -3,6 +3,9 @@ import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import axios from 'axios';
 import getPhotos from './js/photoApi';
+const lightbox = new SimpleLightbox('.lightbox', {
+  delay: 250,
+});
 const refs = {
   form: document.querySelector('.search-form'),
   cards: document.querySelector('.cards'),
@@ -40,6 +43,7 @@ async function onSubmitForm(event) {
 
     refs.paginationBtn.classList.remove('is-hidden');
     Notiflix.Notify.success(`Hooray! We found ${photos.totalHits} images.`);
+    lightbox.refresh();
     refs.form.reset();
   } catch (error) {
     Notiflix.Notify.failure(error);
@@ -96,7 +100,7 @@ function createMarkup({
 }
 
 async function searchImages() {
-  page++;
+  page += 1;
 
   return await getPhotos(searchQuery, page);
 }
@@ -128,9 +132,7 @@ function appendNewToPhotos(markup) {
   lightbox.refresh();
   scrollPage();
 }
-const lightbox = new SimpleLightbox('.lightbox', {
-  delay: 250,
-});
+
 function scrollPage() {
   const { height: cardHeight } =
     refs.cards.firstElementChild.getBoundingClientRect();
