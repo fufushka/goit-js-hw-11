@@ -16,12 +16,14 @@ let page = 0;
 let searchQuery = '';
 
 refs.form.addEventListener('submit', onSubmitForm);
-refs.paginationBtn.classList.add('is-hidden');
+
 refs.paginationBtn.addEventListener('click', paginationOnBtnClick);
 
 async function onSubmitForm(event) {
+  refs.paginationBtn.classList.add('is-hidden');
   event.preventDefault();
   page = 0;
+  refs.cards.innerHTML = '';
   try {
     searchQuery = event.target.elements.searchQuery.value.trim();
 
@@ -44,10 +46,11 @@ async function onSubmitForm(event) {
     refs.paginationBtn.classList.remove('is-hidden');
     Notiflix.Notify.success(`Hooray! We found ${photos.totalHits} images.`);
     lightbox.refresh();
-    refs.form.reset();
   } catch (error) {
     Notiflix.Notify.failure(error);
     console.log(error);
+  } finally {
+    refs.form.reset();
   }
 }
 
